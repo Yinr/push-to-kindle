@@ -45,39 +45,39 @@
 
 1. 构建 Docker 镜像
 
-   ```bash
-   docker-compose build
-   ```
+    ```bash
+    docker-compose build
+    ```
 
 2. 创建并调整配置
 
-   复制 `.env.example` 为 `.env` 并修改相应内容
+    复制 `.env.example` 为 `.env` 并按需修改相应内容
 
-   - 设置 `Mailgun` API
+    - 必填配置
 
-        修改 `.env` 文件中 `MG_API_KEY` 变量以设置 `Mailgun` API。
+        | 变量名             | 说明 |
+        | ----------------- | --- |
+        | `PORT`            | 程序运行的端口，如 `8080` |
+        | `PRODUCTION_HOST` | 程序运行的域名（包含端口），如 `http://127.0.0.1:8080` |
+        | `MG_API_KEY`      | Mailgun 提供的 API Key |
+        | `MG_DOMAIN_NAME`  | Mailgun 中设置的邮箱域名，如 `push.tokindle.top` |
+        | `MG_EMAIL_FROM`   | 发送邮件使用的邮箱名，如 `please@push.tokindle.top` |
 
-        如 API 为 `aBcDeF` 则修改为：`MG_API_KEY=aBcDeF`。
+    - 可选配置（如需使用，先删除相应行首 `#`）
 
-   - 修改运行端口或绑定域名（可选）
-
-        - 修改 `PRODUCTION_HOST` 设置服务部署地址。
-          如部署至 `https://tokindle.top` 则修改为：
-          `PRODUCTION_HOST=https://tokindle.top`。
-
-        - 修改 `docker-compose.yaml` 文件 `ports` 下 `8080` 端口设置运行的端口。
-          如运行于 `80` 端口则修改为：`- '80:8001'`
-
-        > 如不借助反向代理，则 `PRODUCTION_HOST` 的端口必须与 `docker-compose.yaml` 文件中设置的端口一致
+        | 变量名              | 说明 |
+        | ------------------ | --- |
+        | `APP_NAME`         | 程序名称，如 `PUSH TO KINDLE!` |
+        | `MG_EMAIL_SUBJECT` | 发送邮件的主题，如 `convert` |
+        | `MG_EMAIL_TEXT`    | 发送邮件的正文内容 |
 
 3. 启动 docker-compose
 
-   ```bash
-   docker-compose up -d
-   ```
+    ```bash
+    docker-compose up -d
+    ```
 
-   > 修改 `.env` 或 `docker-compose.yaml` 文件中的配置后，
-   > 只需重新执行 `docker-compose up -d` 命令即可更新配置。
+    > 修改 `.env` 文件中的配置后，只需重新执行 `docker-compose up -d` 命令即可更新配置。
 
 ## 计划
 

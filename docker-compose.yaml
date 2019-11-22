@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     ports:
-      - "8080:8001"
+      - ${PORT}:80
     volumes:
       - uploads:/tmp/push-to-kindle/
     restart: unless-stopped
